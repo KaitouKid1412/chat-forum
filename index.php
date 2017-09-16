@@ -31,10 +31,19 @@ if(loggedin())
 	$query = "SELECT * FROM `messages` ";
 	if($query_run = mysql_query($query)) 
 	{	
+?>
+		<div id="username">
+			<span> <?php echo "USERNAME :".$user_name; ?> </span><br><br>
+		</div>
+<?php	
 		while($row = mysql_fetch_array($query_run))
 		{
-			echo $row['user_name']." : ".$row['message'];
-			echo nl2br(" \n "); 
+?>			
+		<div id="window">
+			<span> <?php echo $row['user_name']." : ".$row['message']; ?> </span>
+		</div>
+
+<?php
 		}		            
 	}
 }
@@ -43,15 +52,28 @@ if(loggedin())
 
 <html>
 	
-<head>	
+<head>
+	<link rel="stylesheet" type="text/css" href="indexstyle.css"></link>	
 </head>
 
 <body>
 	<form action="index.php" method="POST">
-		<input type="text" name="message" placeholder="Type Your Message">
-		<input type="submit" name="submit" value="Send"><br><br>
-		<a href="loginform.inc.php">LogIn</a>
-		<a href="Registrationform.inc.php">SignUp</a>
+		<?php
+			if(!(isset($_SESSION['user_id'])) && empty($_SESSION['user_id']))
+			{
+		?>		
+			<a href="loginform.inc.php">LogIn</a>
+			<a href="Registrationform.inc.php">SignUp</a>
+		<?php }
+			else
+			{
+		?>	
+			<input type="text" name="message" placeholder="Type Your Message">
+			<input type="submit" name="submit" value="Send"><br><br>	
+			<a href="logout.php">LogOut</a>
+		<?php
+			}
+		 ?>
 	</form>
 </body>
 
