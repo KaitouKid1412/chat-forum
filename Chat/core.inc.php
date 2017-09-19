@@ -24,6 +24,7 @@ function loggedin()
 
 function getfield($field)
 {
+
 	$connect = mysqli_connect("localhost","root","");
 
 	$query = "SELECT `$field` FROM `users`.`user_data` WHERE `id` = '". $_SESSION['user_id']. "' ";
@@ -31,6 +32,7 @@ function getfield($field)
 	{
 		$row = mysqli_fetch_row($query_run);
 		if($query_result = $row[0])
+
 		{
 			return $query_result;
 		}

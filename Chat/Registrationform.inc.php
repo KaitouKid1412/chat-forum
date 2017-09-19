@@ -2,6 +2,7 @@
 
 include 'core.inc.php';
 
+
 $var = mysqli_connect("localhost", "root", "");
 
 if(!loggedin())
@@ -33,10 +34,12 @@ if(!loggedin())
 			}
 			else
 			{
+
 				$query = " SELECT `id` FROM `users`.`user_data` WHERE `user_name` = '$username' ";
 				$query_run = mysqli_query($var,$query);
 				
 				if(mysqli_num_rows($query_run) == 1)
+
 				{
 					$error_msg2 = 'username already exists';
 				}
@@ -48,12 +51,14 @@ if(!loggedin())
 															    '".mysqli_real_escape_string($var,$lastname)."',
 															    '".mysqli_real_escape_string($var,$email_id)."')  ";
 					if($query_run = mysqli_query($var,$query))
+
 					{
 						header('Location: message.php');
 					}
 					else
 					{
-						die(mysqli_error($var));
+						echo 'there was a problem while registering, please try again later';
+
 					}
 				}
 			}
@@ -85,7 +90,9 @@ if(!loggedin())
 				<h1>
 					Sign Up
 				</h1><br><br>
+
 				<form action="Registrationform.inc.php" method="POST">
+
 
 					Username : <input type="text" name="username" value="<?php if (isset($username)) {echo $username;} ?>"><br><br>
 					Password : <input type="password" name="password"><br><br>

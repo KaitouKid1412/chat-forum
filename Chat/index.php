@@ -5,6 +5,7 @@ include_once 'connect.inc.php';
 
 $var = mysqli_connect("localhost", "root", "");
 
+
 if(loggedin())
 {
 	$user_name = getfield('user_name');
@@ -13,21 +14,25 @@ if(loggedin())
 		$message = $_POST['message'];
 		if(!empty($message))
 		{
+
 			$query = "INSERT INTO `users`.`messages` VALUES ('','".mysqli_real_escape_string($var,$user_name)."',
 												             '".mysqli_real_escape_string($var,$message)."')";
 			
 			if($query_run = mysqli_query($var,$query))
-			{
+
 				header ('Location: index.php');
 			}
 			else
 			{
+
 				die(mysqli_error($var));
+
 			}
 		}
 	}
 
 }
+
 ?>
 
 <html>
@@ -89,6 +94,7 @@ if(loggedin())
 		 	</div>	
 		</div>
 	</div>		
+
 </body>
 
 </html>

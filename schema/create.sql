@@ -1,8 +1,8 @@
 
 CREATE DATABASE IF NOT EXISTS `users`;
-USE `users`;
 
 CREATE TABLE IF NOT EXISTS `messages` (
+
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(40),
   `message` text,
